@@ -317,7 +317,7 @@ Insert one or more documents.
 // Insert one document
 mongo.insert({
     collection:     'users',
-    query:          {
+    data:          {
         id:     123456,
         email:  'test@test.com'
     }
@@ -330,7 +330,7 @@ mongo.insert({
 // Insert many documents
 mongo.insert({
     collection:     'users',
-    query:          [{
+    data:          [{
         id:     123456,
         email:  'test@test.com'
     },{
