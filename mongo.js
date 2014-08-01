@@ -5,7 +5,7 @@ function mongo(options) {
 	this.options = _.extend({
 		host:		"127.0.0.1",
 		port:		27017,
-		database:	"gamify"
+		database:	"test"
 	},options);
 	
 	this.collections = {};
@@ -13,15 +13,27 @@ function mongo(options) {
 mongo.prototype.init = function(callback) {
 	var scope 		= this;
 	
-	this.server 	= new mongodb.Server(this.options.host, this.options.port, {});
-	this.db			= new mongodb.Db(this.options.database, this.server, {w:1});
+	this.server 	= new mongodb.Server(this.options.host, this.options.port, {auto_reconnect:true});
+	this.db			= new mongodb.Db(this.options.database, this.server, {w:1, safe:true});
 	this.db.open(function (error, client) {
 		if (error) {
 			throw error;
 		}
-		scope.instance = client;
-		callback();
+		if (this.options.login && this.options.password) {
+			scope.db.authenticate(this.options.login, this.options.password, function(autherr, result) {
+				if (autherr) throw autherr;
+				scope.instance = client;
+				callback();
+			});
+		} else {
+			scope.instance = client;
+			callback();
+		}
 	});
+	
+}
+mongo.prototype.ObjectId = function(_id) {
+	return new mongodb.ObjectID(_id);
 }
 mongo.prototype.open = function(collectionName, callback) {
 	var scope 		= this;
@@ -62,10 +74,7 @@ mongo.prototype.aggregate = function(options, callback) {
 	this.open(options.collection, function(collection) {
 		if (options.rules.length > 0) {
 			// New structure
-			
 			collection.aggregate(options.rules, function(err, response) {
-				console.log("\n\n------------------------------------------------------------------["+options.collection+"]\n", JSON.stringify(options.rules, null, 4));
-				
 				callback(response);
 			});
 		} else {

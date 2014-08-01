@@ -17,13 +17,18 @@ stack.prototype.add = function(item, params) {
 stack.prototype.process = function(callback, async) {
 	var scope = this;
 	
+	if (this.stack.length == 0) {
+		callback();
+		return false;
+	}
+	
 	if (!async) {
 		// synchronous execution
 		if (this.stack.length == 0) {
 			callback();
 			return true;
 		}
-		this.stack[0].fn(this.stack[0].params,function() {
+		this.stack[0].fn(this.stack[0].params, function() {
 			scope.stack.shift();
 			if (scope.stack.length == 0) {
 				callback();

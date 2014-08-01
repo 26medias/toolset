@@ -1,37 +1,41 @@
 {
-	"author": {
-		"name": "Julien Loutre",
-		"email": "julien@twenty-six-medias.com",
-		"url": "http://www.twenty-six-medias.com/"
-	},
-	"name": "toolset",
-	"description": "toolset",
-	"version": "0.0.1",
-	"homepage": "https://github.com/26medias/toolset",
-	"licenses": [
-	{
-		"type": "MIT",
-		"url": "https://raw.github.com/26medias/toolset/master/LICENSE"
-	}
-	],
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/26medias/toolset.git"
-	},
-	"main": "toolset.js",
-	"engines": {
-		"node": "*"
-	},
-	"dependencies": {
-		"mongodb":		"latest",
-		"underscore":	"latest",
-		"walk":			"latest"
-	},
-	"devDependencies": {
-		
-	},
-	"readme": "Not public yet.",
-	"readmeFilename": "README.md",
-	"_id": "express-boost@0.0.1",
-	"_from": "express-boost@*"
+  "author": {
+    "name": "Julien Loutre",
+    "email": "julien@twenty-six-medias.com",
+    "url": "http://www.twenty-six-medias.com/"
+  },
+  "name": "toolset",
+  "description": "toolset",
+  "version": "1.6.5",
+  "homepage": "https://github.com/26medias/toolset",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/26medias/toolset/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/26medias/toolset.git"
+  },
+  "main": "toolset.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "mongodb": "latest",
+    "underscore": "latest",
+    "walk": "latest",
+    "request": "latest",
+    "archiver": "latest",
+    "path": "latest",
+    "unzip": "latest",
+    "tar-fixed": "latest",
+    "fstream": "latest"
+  },
+  "devDependencies": {},
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/26medias/toolset/issues"
+  }
 }
